@@ -1,0 +1,65 @@
+*,*::before,*::after{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.lottie{
+  height: 250px;
+  width: 250px;
+
+
+}
+
+.scanner{
+  height: 100%;
+  width: 100%;
+}
+
+
+/* Image upload change */
+
+/* const UploadImgContainer = styled.div`
+    position: relative;
+    &:hover{
+        opacity: 0.8;
+    }
+    &:after:hover{
+        content: 'Change Picture';
+        color: white;
+        background: rgba(0,0,0,0.2);
+    }
+`; */
+
+.upload-image-container{
+  position: relative;
+  cursor: pointer !important;
+}
+.upload-image-container:hover::after{
+  position: absolute;
+  text-align: center;
+  padding: 20px;
+  bottom: 0px; left: 0px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  content: 'Change Image';
+  color: white
+}
+.upload-image-container>*{
+  cursor: pointer !important;
+}
+/* Image upload change */
+
+/* This is just for updating some git stuff: Somehow the changes made in stuff branch did not apply */

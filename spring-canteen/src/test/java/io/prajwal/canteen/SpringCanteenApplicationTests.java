@@ -1,0 +1,13 @@
+package io.prajwal.canteen;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SpringCanteenApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
