@@ -92,3 +92,28 @@ export const editOrderFn = async (
   }
   throw new Error('Error editing order');
 };
+
+// Create Order
+export const createOrderFn = async (args: any, { getState }: any) => {
+  try {
+    const order = getState().makeOrder.order;
+    let authUser = getState().session.user;
+    let newOrder: AddEditOrderType = { owner: null, items: [] };
+    newOrder.owner = authUser.id; // Adding owner
+    order.items.forEach((item: any) => {
+      newOrder.items.push(item.id); // Adding items
+    });
+    // --- Done new order object is created ---
+    const { status } = await jwtAxios().post(
+      endpoints.order.createOrder,
+      newOrder,
+    );
+    if (status === StatusCodes.CREATED) {
+      toast.success('Order created successfully');
+      return null;
+    }
+  } catch (error) {
+    toast.error('Problem creating order.');
+  }
+  throw new Error('Error creating new order.');
+};

@@ -99,7 +99,9 @@ export const editItemFn = async (item: AddEditItemType, { getState }: any) => {
 export const deleteItemFn = async (args: any, { getState }: any) => {
   const { id: itemId, ...rest } = getState().item.selectedItem;
   try {
-    const { status } = await jwtAxios().delete(endpoints.item.deleteItemFn(itemId));
+    const { status } = await jwtAxios().delete(
+      endpoints.item.deleteItemFn(itemId),
+    );
     if (status === StatusCodes.NO_CONTENT) {
       toast.success('Item deleted successfully.');
       return null;
@@ -110,12 +112,51 @@ export const deleteItemFn = async (args: any, { getState }: any) => {
   throw new Error('Error deleting item');
 };
 
-
 // Fetch Category Items DD
 export const fetchItemsDDFn = async (catId: number) => {
-  const { data, status } = await axios.get(endpoints.item.fetchCategoryItemDDFn(catId));
+  const { data, status } = await axios.get(
+    endpoints.item.fetchCategoryItemDDFn(catId),
+  );
   if (status === StatusCodes.OK) {
     return data;
   }
   throw new Error('Error fetching Items drop down data.');
+};
+
+// Fetch Category with Items --for makeOrderSlice
+export const fetchCategoriesWithItemFn = async (
+  args: any,
+  { getState }: any,
+) => {
+  try {
+    const catId = getState().makeOrder.category;
+    const searchTerm = getState().makeOrder.filter.searchTerm;
+    const categoriesDD = getState().category.categoriesDD;
+    const sort = getState().makeOrder.filter.sort;
+    const query = `page=0&size=-1&sort=${sort.by},${sort.order}&searchTerm=${searchTerm}`;
+    let catWithItems = [];
+    if (catId) {
+      let { name } = categoriesDD.filter((c: any) => c.id === catId)[0];
+      let { data, status } = await axios.get(
+        endpoints.item.fetchCategoryItemsFn(catId, query),
+      );
+      if (status === StatusCodes.OK) {
+        catWithItems.push({ name, items: data.items });
+      }
+    } else {
+      for (let i = 0; i < categoriesDD.length; i++) {
+        let { name, id } = categoriesDD[i];
+        let { data, status } = await axios.get(
+          endpoints.item.fetchCategoryItemsFn(id, query),
+        );
+        if (status === StatusCodes.OK) {
+          catWithItems.push({ name, items: data.items });
+        }
+      }
+    }
+    return catWithItems;
+  } catch (error) {
+    toast.error('Problem fetcing items. Sorry');
+  }
+  throw new Error('Error fetching items');
 };

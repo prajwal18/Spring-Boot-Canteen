@@ -23,7 +23,6 @@ import {
   selectSelectedOrder,
   setSelectedOrder,
 } from '../../redux/slice/orderSlice';
-import { getDateTime } from '../../utils/dateTimeConverter';
 import { AppDispatch } from '../../redux/store';
 import {
   fetchCategoriesDD,

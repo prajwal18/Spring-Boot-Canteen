@@ -83,8 +83,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDD> findAllCategoryDD() {
-        List<Category> categories = categoryRepository.findAll();
-        return categories.stream().map(CategoryMapper::mapToCategoryDD)
+        PageRequest pgReq = PageRequest.of(0, Integer.MAX_VALUE, Sort.by(Sort.Direction.ASC, "name"));
+        Page<Category> categories = categoryRepository.findAll(pgReq);
+        return categories.getContent().stream().map(CategoryMapper::mapToCategoryDD)
                 .collect(Collectors.toList());
     }
 

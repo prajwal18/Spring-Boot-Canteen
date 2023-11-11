@@ -40,6 +40,7 @@ public class ItemController {
 
     @GetMapping("/categories/{catId}/items")
     public ResponseEntity<PageinatedResponse<ItemDTO>> findAllByCategory(@PathVariable long catId, Pageable pageable, @RequestParam(value = "searchTerm", required = false) String searchTerm) {
+        // page=0&size=-1 will return all the items in the category.
         if (categoryService.existsById(catId)) {
             PageinatedResponse<ItemDTO> response = itemService.findAllByCategory(pageable, catId, searchTerm);
             return ResponseEntity.ok(response);

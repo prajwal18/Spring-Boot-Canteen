@@ -19,6 +19,7 @@ const endpoints = {
       `${baseURL}/users/${userId}/password`,
   },
   order: {
+    createOrder: `${baseURL}/orders`,
     fetchMyOrderslFn: (userId: number, query: string) =>
       `${baseURL}/users/${userId}/orders?${query}`,
     fetchAllOrdersFn: (query: string) => `${baseURL}/orders?${query}`,

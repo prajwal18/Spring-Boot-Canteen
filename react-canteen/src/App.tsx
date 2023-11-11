@@ -7,11 +7,13 @@ import Register from './pages/register/Register';
 import { useHasSessionExpired } from './query/query.auth';
 import PublicOnlyRoute from './components/PublicOnlyRoute';
 import ProtectedOnlyRoute from './components/ProtectedOnlyRoute';
+import Order from './pages/order/Order';
+import OrderCompleted from './pages/order/OrderCompleted';
 
 function App() {
   useHasSessionExpired(); // Refresh session every 100 seconds if the user's logged in.
   return (
-    <Box sx={{width:"100%"}}>
+    <Box sx={{ width: '100%' }}>
       <Routes>
         <Route
           path="/login"
@@ -29,6 +31,8 @@ function App() {
             </PublicOnlyRoute>
           }
         />
+        <Route path="/order" element={<Order />} />
+        <Route path="/order-confirmation" element={<OrderCompleted />} />
         <Route
           path="/*"
           element={

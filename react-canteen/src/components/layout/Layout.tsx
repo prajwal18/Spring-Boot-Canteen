@@ -6,7 +6,7 @@ import Router from '../utility/Router';
 import useIsLoggedIn from '../../hooks/useIsLoggedIn';
 
 // Styled Component
-const ContainerBox = styled(Box)`
+export const ContainerBox = styled(Box)`
   height: 100%;
   min-height: 100vh;
   margin: 0px;

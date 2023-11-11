@@ -45,7 +45,7 @@ public class ItemServiceImpl implements ItemService {
     public PageinatedResponse<ItemDTO> findAllByCategory(Pageable pageable, long catId, String searchTerm) {
         Page<Item> items = itemRepository.findByCategoryFilterByName(PageRequest.of(
                 pageable.getPageNumber(),
-                pageable.getPageSize(),
+                pageable.getPageSize() != -1 ? pageable.getPageSize(): Integer.MAX_VALUE,
                 pageable.getSortOr(Sort.by(Sort.Direction.ASC, "id"))
         ), catId, searchTerm);
 
