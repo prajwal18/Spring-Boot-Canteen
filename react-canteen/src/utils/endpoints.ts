@@ -5,6 +5,11 @@ const endpoints = {
     login: `${baseURL}/login`,
     fetchSession: `${baseURL}/session-info`,
   },
+  otp:{
+    sendOTP: `${baseURL}/otp/send`, // Sends OTP to your email
+    checkOTP: `${baseURL}/otp/check`,
+    changePassword: `${baseURL}/otp/change-password`,
+  },
   user: {
     register: `${baseURL}/register`,
     fetchUserDDFn: (query: string) => `${baseURL}/users/dd?${query}`,

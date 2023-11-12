@@ -1,4 +1,6 @@
-*,*::before,*::after{
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -16,18 +18,20 @@ code {
     monospace;
 }
 
-.lottie{
-  height: 250px;
-  width: 250px;
-
-
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
 }
 
-.scanner{
+.lottie {
+  height: 250px;
+  width: 250px;
+}
+
+.scanner {
   height: 100%;
   width: 100%;
 }
-
 
 /* Image upload change */
 
@@ -43,21 +47,22 @@ code {
     }
 `; */
 
-.upload-image-container{
+.upload-image-container {
   position: relative;
   cursor: pointer !important;
 }
-.upload-image-container:hover::after{
+.upload-image-container:hover::after {
   position: absolute;
   text-align: center;
   padding: 20px;
-  bottom: 0px; left: 0px;
+  bottom: 0px;
+  left: 0px;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   content: 'Change Image';
-  color: white
+  color: white;
 }
-.upload-image-container>*{
+.upload-image-container > * {
   cursor: pointer !important;
 }
 /* Image upload change */

@@ -20,6 +20,7 @@ import FastfoodIcon from '@mui/icons-material/Fastfood'; // Categories & Items
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory'; // Manage history
 import LogoutIcon from '@mui/icons-material/Logout'; // Logout
 import SettingsIcon from '@mui/icons-material/Settings'; // Setting
+import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'; // Order
 // MUI Icons
 import { getRoutesOfAuthUser, routes } from '../../utils/PermissionInfo';
 import { clearSession, selectAuthUser } from '../../redux/slice/sessionSlice';
@@ -138,6 +139,11 @@ const sidebarData: Array<sidebarDataType> = [
     link: routes.SETTINGS,
     name: 'Settings',
     icon: <SettingsIcon />,
+  },
+  {
+    link: routes.ORDER,
+    name: 'Order',
+    icon: <RestaurantMenuIcon />,
   },
 ];
 // Sidebar Data

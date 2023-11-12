@@ -19,7 +19,10 @@ import {
 } from '../../redux/slice/categorySlice';
 
 // ICONS
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'; // Cart icon
+import PersonIcon from '@mui/icons-material/Person'; // Portal icon
+import LoginIcon from '@mui/icons-material/Login'; // Login icon
+// ICONS
 import { GreyBtn } from '../../components/styled-components/Button';
 import { ItemType } from '../../redux/slice/itemSlice';
 import LoginOrContinueBrowsing from '../../components/modals/LoginOrContinueBrowsing';
@@ -37,7 +40,7 @@ import {
   setMakeOrderSort,
 } from '../../redux/slice/makeOrderSlice';
 import CartComponent from './CartComponent';
-// ICONS
+import { useNavigate } from 'react-router-dom';
 
 // Awesome Shade of Orange #FB8239
 
@@ -147,6 +150,7 @@ const Order = () => {
         </Stack>
       </ContainerBox>
       <ViewCartFAB />
+      <PortalOrLoginFAB />
     </>
   );
 };
@@ -203,7 +207,7 @@ const ViewCartFAB = () => {
   }, [order]);
   return (
     <>
-      <Box sx={{ position: 'fixed', bottom: '50px', right: '50px' }}>
+      <Box sx={{ position: 'fixed', bottom: '140px', right: '50px' }}>
         <Fab
           title={`${itemNum} in the cart`}
           sx={{ position: 'relative', padding: '35px' }}
@@ -237,6 +241,37 @@ const ViewCartFAB = () => {
         />
       )}
     </>
+  );
+};
+
+// Go Back to Login or Portal FAB - Floating Action Button
+const PortalOrLoginFAB = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (isLoggedIn) {
+      navigate('/');
+    } else {
+      navigate('/login');
+    }
+  };
+
+  return (
+    <Box sx={{ position: 'fixed', bottom: '50px', right: '50px' }}>
+      <Fab
+        title={isLoggedIn ? `Go to user portal` : 'Go to login'}
+        sx={{ position: 'relative', padding: '35px' }}
+        color="secondary"
+        onClick={handleClick}
+      >
+        {isLoggedIn ? (
+          <PersonIcon fontSize="large" />
+        ) : (
+          <LoginIcon fontSize="large" />
+        )}
+      </Fab>
+    </Box>
   );
 };
 

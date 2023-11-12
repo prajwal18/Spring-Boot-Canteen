@@ -53,6 +53,10 @@ public class UserEntity {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE)
     private List<Order> orders = new ArrayList<>();
 
+    // OTP
+    @OneToOne(mappedBy = "user")
+    private OTP otp;
+
     // Methods
     public Collection<SimpleGrantedAuthority> getAuthorities(){
         return this.roles.stream()

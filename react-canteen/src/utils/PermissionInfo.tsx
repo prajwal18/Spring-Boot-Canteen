@@ -22,7 +22,8 @@ export const routes = {
   CATEGORIES_AND_ITEMS: '/categories-and-items',
   ORDER_HISTORY: '/order-history',
   MANAGE_USERS: '/manage-users',
-  SETTINGS: '/settings'
+  SETTINGS: '/settings',
+  ORDER: "/order"
 };
 
 export type RoleAndRoutesType = {
@@ -30,7 +31,7 @@ export type RoleAndRoutesType = {
 };
 
 export const roleAndRoutes: RoleAndRoutesType = {
-  CUSTOMER: [routes.MY_ORDERS, routes.SETTINGS],
+  CUSTOMER: [routes.MY_ORDERS, routes.SETTINGS, routes.ORDER],
   STAFF: [routes.CATEGORIES_AND_ITEMS, routes.ORDER_HISTORY, routes.SETTINGS],
   ADMIN: [routes.MANAGE_USERS, routes.SETTINGS],
 };

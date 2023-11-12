@@ -1,9 +1,7 @@
 import * as yup from 'yup';
 
 export const loginSchema = yup.object().shape({
-  username: yup
-    .string()
-    .required('Specify your username'),
+  username: yup.string().required('Specify your username'),
   password: yup
     .string()
     .required('Sprcify your password')
@@ -60,9 +58,7 @@ export const addEditItemSchema = yup.object().shape({
 });
 
 export const changePasswordSchema = yup.object().shape({
-  oldPassword: yup
-    .string()
-    .required('Specify your old password'),
+  oldPassword: yup.string().required('Specify your old password'),
   newPassword: yup
     .string()
     .required('Specify your new password.')
@@ -79,11 +75,36 @@ export const addEditUserSchema = yup.object().shape({
     .required('Specify your password')
     .min(8, 'password cannot be shorter than 8 characters.'),
   email: yup.string().email().required('Specify your email'),
-  roles: yup.array().of(yup.string()).required("Specify a role").min(1, "User needs to have at least one role")
+  roles: yup
+    .array()
+    .of(yup.string())
+    .required('Specify a role')
+    .min(1, 'User needs to have at least one role'),
 });
-
 
 export const addEditOrderSchema = yup.object().shape({
   owner: yup.number().required().min(1, 'Select a valid user'),
-  items: yup.array().of(yup.number()).required('Select an item').min(1, 'A order needs to have at least one item.')
-})
+  items: yup
+    .array()
+    .of(yup.number())
+    .required('Select an item')
+    .min(1, 'A order needs to have at least one item.'),
+});
+
+export const forgotPasswordSchema = [
+  yup.object().shape({
+    email: yup.string().email().required(),
+  }),
+  yup.object().shape({
+    otp: yup.string().required().length(6, 'OTP should be 6 characters long.'),
+  }),
+  yup.object().shape({
+    newPassword: yup
+      .string()
+      .min(8, 'password cannot be shorter than 8 characters.'),
+    rePassword: yup
+      .string()
+      .min(8, 'password cannot be shorter than 8 characters.')
+      .oneOf([yup.ref('newPassword')], "The passwords don't match"),
+  }),
+];

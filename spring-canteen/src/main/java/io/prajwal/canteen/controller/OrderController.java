@@ -78,7 +78,7 @@ public class OrderController {
 
 
     @PostMapping("/orders")
-    @PreAuthorize("hasRole('STAFF')")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Void> createOrder(@RequestBody CreateOrderDTO order, UriComponentsBuilder ucb) {
         OrderDTO savedOrder = orderService.createOrder(order);
         if (savedOrder != null) {

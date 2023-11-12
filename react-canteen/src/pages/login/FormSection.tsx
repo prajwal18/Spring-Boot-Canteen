@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import CustomTextField from '../../components/form/CustomTextField';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
+import CustomPasswordField from '../../components/form/CustomPasswordField';
 
 const loginInputStyle = {
   '& .MuiInputLabel-root': { color: 'green' }, //styles the label
@@ -65,22 +66,20 @@ const FormSection = ({ formik }: { formik: any }) => {
             disabled={formik.isSubmitting}
             extraProps={{ required: true }}
             style={loginInputStyle}
-
           />
-          <CustomTextField
+          <CustomPasswordField
             name="password"
             label="Password"
+            fullWidth
+            margin="normal"
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            type="password"
             helperText={formik.touched.password ? formik.errors.password : ''}
             error={formik.touched.password && Boolean(formik.errors.password)}
             disabled={formik.isSubmitting}
-            extraProps={{ required: true }}
-            style={loginInputStyle}
+            sx={loginInputStyle}
           />
-
           <Button
             color="secondary"
             type="submit"
@@ -89,14 +88,17 @@ const FormSection = ({ formik }: { formik: any }) => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            {
-              formik.isSubmitting?
-              <CircularProgress color="inherit"/>
-              : "Log In"
-            }
+            {formik.isSubmitting ? (
+              <CircularProgress color="inherit" />
+            ) : (
+              'Log In'
+            )}
           </Button>
           <Typography sx={{ textAlign: 'center' }}>
             Don't have an Account? <Link to="/register">Register</Link>
+          </Typography>
+          <Typography sx={{ textAlign: 'center' }}>
+            Forgot Password? <Link to="/forgot-password">Click Here</Link>
           </Typography>
         </Box>
       </Box>

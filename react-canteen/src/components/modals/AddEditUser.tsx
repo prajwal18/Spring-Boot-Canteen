@@ -25,6 +25,7 @@ import { RedBtn } from '../styled-components/Button';
 import { toast } from 'react-toastify';
 //ICONS
 import DeleteIcon from '@mui/icons-material/Delete';
+import CustomPasswordField from '../form/CustomPasswordField';
 //ICONS
 
 interface IAddEditUser {
@@ -98,10 +99,9 @@ const AddEditUser: FC<IAddEditUser> = ({ open, handleClose, isEditing }) => {
             error={formik.touched.username && Boolean(formik.errors.username)}
           />
           {!isEditing && (
-            <TextField
+            <CustomPasswordField
               label="Password"
               name="password"
-              type="password"
               value={formik.values.password}
               onChange={formik.handleChange}
               fullWidth

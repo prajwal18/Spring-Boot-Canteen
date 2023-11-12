@@ -23,6 +23,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { isUserAdmin } from '../../utils/PermissionInfo';
 import { clearSession, selectAuthUser } from '../../redux/slice/sessionSlice';
 import { AppDispatch } from '../../redux/store';
+import CustomPasswordField from '../form/CustomPasswordField';
 // ICONS
 
 interface IViewUser {
@@ -133,10 +134,9 @@ const ChangePasswordByAdminSection = ({
           component="form"
           onSubmit={formik.handleSubmit}
         >
-          <TextField
+          <CustomPasswordField
             label="New Password"
             name="newPassword"
-            type="text"
             value={formik.values.newPassword}
             onChange={formik.handleChange}
             fullWidth

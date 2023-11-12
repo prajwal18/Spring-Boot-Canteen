@@ -14,6 +14,7 @@ import { RedBtn } from '../../components/styled-components/Button';
 // ICONS
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AppDispatch } from '../../redux/store';
+import { selectIsLoggedIn } from '../../redux/slice/sessionSlice';
 // ICONS
 
 interface ICartComponent {
@@ -22,6 +23,7 @@ interface ICartComponent {
 const CartComponent: FC<ICartComponent> = ({ handleClose }) => {
   const dispatch = useDispatch<AppDispatch>();
   const isSubmitting = useSelector(selectMakeOrderIsSubmitting);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const order = useSelector(selectOrder);
   const orderTotal = useMemo(() => {
     if (order) {

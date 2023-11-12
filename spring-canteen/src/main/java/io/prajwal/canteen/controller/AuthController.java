@@ -4,6 +4,7 @@ import io.prajwal.canteen.model.AuthReq;
 import io.prajwal.canteen.model.AuthRes;
 import io.prajwal.canteen.model.SecurityUser;
 import io.prajwal.canteen.model.UserEntity;
+import io.prajwal.canteen.service.impl.MailSenderService;
 import io.prajwal.canteen.util.JwtUtil;
 import io.prajwal.canteen.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class AuthController {
 
     @Autowired
     private JwtUtil jwtUtil;
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthReq authReq) throws Exception{

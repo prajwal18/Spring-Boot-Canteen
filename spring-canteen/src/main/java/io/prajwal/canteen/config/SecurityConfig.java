@@ -45,7 +45,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers("/login", "/register").permitAll();
+            auth.requestMatchers("/login", "/register", "/otp/**").permitAll();
             auth.requestMatchers(HttpMethod.GET, "/categories/**", "/items/**").permitAll();
             auth.requestMatchers(HttpMethod.POST, "/categories/**", "/items/**").hasAuthority("STAFF");
             auth.requestMatchers(HttpMethod.PUT, "/categories/**", "/items/**").hasAuthority("STAFF");

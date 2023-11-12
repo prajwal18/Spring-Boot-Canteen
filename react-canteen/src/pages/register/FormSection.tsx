@@ -10,6 +10,7 @@ import {
 import { LockOutlined } from '@mui/icons-material';
 import CustomTextField from '../../components/form/CustomTextField';
 import { Link } from 'react-router-dom';
+import CustomPasswordField from '../../components/form/CustomPasswordField';
 
 const FormSection = ({ formik }: { formik: any }) => {
   return (
@@ -63,17 +64,17 @@ const FormSection = ({ formik }: { formik: any }) => {
             error={formik.touched.email && Boolean(formik.errors.email)}
             extraProps={{ required: true }}
           />
-          <CustomTextField
+          <CustomPasswordField
             name="password"
             label="Password"
+            fullWidth
+            margin="normal"
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            type="password"
             helperText={formik.touched.password ? formik.errors.password : ''}
             disabled={formik.isSubmitting}
             error={formik.touched.password && Boolean(formik.errors.password)}
-            extraProps={{ required: true }}
           />
 
           <Button

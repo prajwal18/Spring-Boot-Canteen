@@ -30,14 +30,14 @@ public class UserController {
     private JwtUtil jwtUtil;
 
     @GetMapping("/users")
-    @PreAuthorize("hasRole('STAFF')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PageinatedResponse<UserDTO>> findAll(Pageable pageable, @RequestParam(value = "searchTerm") String searchTerm, @RequestParam(value = "role") String role) {
         PageinatedResponse<UserDTO> response = userService.findAll(pageable, searchTerm, role);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/users/dd")
-    @PreAuthorize("hasRole('STAFF')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserDD>> findAllUserDD(@RequestParam String searchTerm) {
         List<UserDD> users = userService.findAllUserDD(searchTerm); // Only returns 10 at a time
         return ResponseEntity.ok(users);

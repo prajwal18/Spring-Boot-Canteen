@@ -14,6 +14,7 @@ import { useFormik } from 'formik';
 import { changePasswordSchema } from '../../utils/YupSchema';
 import { changePasswordByUserFn } from '../../query/fn.user';
 import { clearSession } from '../../redux/slice/sessionSlice';
+import CustomPasswordField from '../form/CustomPasswordField';
 
 interface IChangePassword {
   open: boolean;
@@ -59,10 +60,9 @@ const FormSection: FC<IFormSection> = ({ user }) => {
       onSubmit={formik.handleSubmit}
       sx={{ minWidth: '400px', width:"100%" }}
     >
-      <TextField
+      <CustomPasswordField
         label="Old Password"
         name="oldPassword"
-        type="text"
         value={formik.values.oldPassword}
         onChange={formik.handleChange}
         fullWidth
@@ -75,10 +75,9 @@ const FormSection: FC<IFormSection> = ({ user }) => {
         disabled={formik.isSubmitting}
         error={formik.touched.oldPassword && Boolean(formik.errors.oldPassword)}
       />
-      <TextField
+      <CustomPasswordField
         label="New Password"
         name="newPassword"
-        type="text"
         value={formik.values.newPassword}
         onChange={formik.handleChange}
         fullWidth

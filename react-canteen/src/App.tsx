@@ -8,7 +8,7 @@ import { useHasSessionExpired } from './query/query.auth';
 import PublicOnlyRoute from './components/PublicOnlyRoute';
 import ProtectedOnlyRoute from './components/ProtectedOnlyRoute';
 import Order from './pages/order/Order';
-import OrderCompleted from './pages/order/OrderCompleted';
+import ForgotPassword from './pages/forgot-password/ForgotPassword';
 
 function App() {
   useHasSessionExpired(); // Refresh session every 100 seconds if the user's logged in.
@@ -31,8 +31,15 @@ function App() {
             </PublicOnlyRoute>
           }
         />
+        <Route
+          path="/forgot-password"
+          element={
+            <PublicOnlyRoute>
+              <ForgotPassword />
+            </PublicOnlyRoute>
+          }
+        />
         <Route path="/order" element={<Order />} />
-        <Route path="/order-confirmation" element={<OrderCompleted />} />
         <Route
           path="/*"
           element={
